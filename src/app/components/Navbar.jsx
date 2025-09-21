@@ -37,7 +37,7 @@ const resolveTarget = (q) => {
 
 const navLinks = [
 
-  { title: "Work", path: "#work" },
+  { title: "Work", path: "/work" },
   { title: "Contact", path: "/contact" },
 ];
 
@@ -186,19 +186,25 @@ useEffect(() => {
       </div>
       
        {/* MOBILE DROPDOWN (tiny) */}
-{navbarOpen && (
-  <div className="fixed right-6 top-24 mt-2 w-56 rounded-lg border border-white/10 bg-[#1a1a1a] shadow-2xl lg:hidden z-[60]">
+       {navbarOpen && (
+  <div
+    className="fixed right-3 sm:right-6 top-24 mt-2 w-[calc(100vw-1.5rem)] sm:w-56 max-h-[70vh] overflow-y-auto rounded-lg border border-white/10 bg-[#1a1a1a] shadow-2xl lg:hidden z-[60]"
+    role="menu"
+    aria-label="Mobile navigation"
+  >
     <ul className="py-2 text-sm text-[#ADB7BE]">
-      {/* Studio Services with nested subheadings */}
       <li>
         <button
           className="w-full text-left px-3 py-2 hover:text-white"
-          onClick={() => setShowServices((prev) => !prev)} // add state for toggle
+          onClick={() => setShowServices((prev) => !prev)}
+          aria-expanded={showServices}
+          aria-controls="mobile-services"
         >
           Studio Services
         </button>
+
         {showServices && (
-          <ul className="ml-4 mt-1 space-y-1 text-sm">
+          <ul id="mobile-services" className="ml-4 mt-1 space-y-1 text-sm">
             <li>
               <Link href="/studio-services/recording" onClick={() => setNavbarOpen(false)}
                 className="block px-2 py-1 hover:text-white">Recordings</Link>
@@ -223,7 +229,6 @@ useEffect(() => {
         )}
       </li>
 
-      {/* Other top-level items */}
       <li>
         <Link href="/gallery" onClick={() => setNavbarOpen(false)}
           className="block px-3 py-2 hover:text-white">Gallery</Link>
@@ -233,7 +238,7 @@ useEffect(() => {
           className="block px-3 py-2 hover:text-white">Equipment</Link>
       </li>
       <li>
-        <Link href="#work" onClick={() => setNavbarOpen(false)}
+        <Link href="/work" onClick={() => setNavbarOpen(false)}
           className="block px-3 py-2 hover:text-white">Work</Link>
       </li>
       <li>
@@ -243,6 +248,7 @@ useEffect(() => {
     </ul>
   </div>
 )}
+
 
 
       {/* === SEARCH POPOVER (RIGHT SIDE, UNDER ICON) === */}
@@ -262,7 +268,7 @@ useEffect(() => {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search…"
-              className="w-[320px] px-4 py-3 text-white placeholder-gray-400 bg-transparent outline-none"
+              className="w-[75vw] max-w-[360px] px-4 py-3 text-white placeholder-gray-400 bg-transparent outline-none"
               // ✅ closes when focus is lost
               onBlur={() => setTimeout(closeSearch, 80)}
             />

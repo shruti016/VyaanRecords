@@ -6,16 +6,14 @@ const VIEWS = {
   about: {
     heading: "ALLOW US TO INTRODUCE OURSELVES…",
     body: [
-      "Vyaan Records is the home of music creation. A creative studio delivering compositions, sound design, and mixes for ads, films, and indie artists.",
-      "With classical training and modern sound design, we’re shaping unique sonic experiences that move stories forward.",
-      "From soulful tracks to cinematic scores, we aim to empower a new generation of artists and storytellers.",
+      "Vyaan Records is a creative music and sound studio crafting original songs, cinematic scores, and immersive audio experiences. From independent artists to films and brands, we bring stories to life through composition, production, mixing, and sound design. Blending artistry with innovation, we aim to create music that resonates, inspires, and leaves a lasting impact.",
     ],
   },
   team: {
     heading: "Team of Vyaan Records",
     body: [
-      "Meet the passionate creators behind Vyaan Records — sound engineers, producers, and musicians working together to deliver world-class compositions and audio post-production.",
-      "We’re a small, focused crew that treats every brief like a score: intent, feel, and precision.",
+      "At Vyaan Records, our team is a blend of producers, sound designers, and musicians united by one vision — to create powerful audio that connects.",
+      "Every project is a collaboration of passion and precision, where creativity meets technical mastery to deliver music and sound that truly stand out.",
     ],
   },
   vision: {
@@ -28,8 +26,8 @@ const VIEWS = {
 };
 
 const BOXES = [
-  { id: "team", title: "Team", img: "/images/gallery/team-placeholder.jpg", alt: "Vyaan Records Team" },
-  { id: "vision", title: "Vision", img: "/images/gallery/vision-placeholder.jpg", alt: "Vision" },
+  { id: "team", title: "Team", img: "/images/gallery/studio-6.jpg", alt: "Vyaan Records Team" },
+  { id: "vision", title: "Vision", img: "/images/gallery/studio-5.jpg", alt: "Vision" },
 ];
 
 export default function AboutSection() {

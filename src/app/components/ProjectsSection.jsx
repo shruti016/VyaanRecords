@@ -54,7 +54,7 @@ export default function ProjectsSection() {
         {filtered.map((w, i) => (
           <motion.li key={w.id} variants={card} initial="initial" animate={isInView?"animate":"initial"} transition={{duration:0.3, delay:i*0.2}}
             className="bg-[#181818] rounded-xl overflow-hidden border border-[#33353F]">
-            <div className="relative w-full aspect-[4/3]rounded-t-xl border border-dashed border-[#33353F] bg-[#181818] flex items-center justify-center overflow-hidden">
+            <div className="relative w-full aspect-[4/3] rounded-t-xl border border-dashed border-[#33353F] bg-[#181818] flex items-center justify-center overflow-hidden">
             {w.image ? (
               <Image src={w.image} alt={w.title} fill className="object-cover"/>
             ) : (

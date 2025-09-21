@@ -14,6 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           rel="preload"
           as="video"
@@ -21,11 +22,14 @@ export default function RootLayout({ children }) {
           type="video/mp4"
         />
       </head>
-      <body className={`${inter.className} bg-[#0b0b0b] text-white`}>
-      <Navbar />
-      <main className="pt-24">{children}</main>
-     
+
+      {/* add safe-area + overflow-x guard — does NOT alter desktop look */}
+      <body className={`${inter.className} bg-[#0b0b0b] text-white overflow-x-hidden safe-area-t safe-area-b`}>
+        <Navbar />
+        {/* keep your existing top padding (matches fixed nav height) */}
+        <main className="pt-24">{children}</main>
       </body>
     </html>
   );
 }
+
