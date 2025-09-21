@@ -126,7 +126,7 @@ useEffect(() => {
         {/* LEFT: logo + wordmark */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/images/logo-white.PNG"
+            src={"/images/Logo/logo-white.png"}
             alt="Vyaan Records"
             width={80}
             height={80}
