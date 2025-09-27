@@ -121,8 +121,8 @@ useEffect(() => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#121212] h-24 flex items-center">
-      <div className="w-full flex items-center px-6">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#121212] h-20 sm:h-24 flex items-center">
+      <div className="w-full flex items-center px-4 sm:px-6">
         {/* LEFT: logo + wordmark */}
         <Link href="/" className="flex items-center gap-3">
           <Image
@@ -131,9 +131,9 @@ useEffect(() => {
             width={80}
             height={80}
             priority
-            className="w-16 h-16 md:w-20 md:h-20"
+            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
           />
-          <span className="hidden sm:inline-block text-white font-semibold tracking-[0.18em] uppercase leading-none text-xl md:text-2xl">
+          <span className="hidden sm:inline-block text-white font-semibold tracking-[0.18em] uppercase leading-none text-lg sm:text-xl md:text-2xl">
             VYAAN&nbsp;RECORDS
           </span>
         </Link>
@@ -148,8 +148,8 @@ useEffect(() => {
             <ServiceMenu />
             <GalleryMenu />
             <EquipmentMenu />
-            {navLinks.map((link, index) => (
-              <li key={index}>
+            {navLinks.map((link) => (
+              <li key={link.path}>
                 <NavLink href={link.path} title={link.title} />
               </li>
             ))}
@@ -188,7 +188,7 @@ useEffect(() => {
        {/* MOBILE DROPDOWN (tiny) */}
        {navbarOpen && (
   <div
-    className="fixed right-3 sm:right-6 top-24 mt-2 w-[calc(100vw-1.5rem)] sm:w-56 max-h-[70vh] overflow-y-auto rounded-lg border border-white/10 bg-[#1a1a1a] shadow-2xl lg:hidden z-[60]"
+    className="fixed right-3 sm:right-6 top-20 sm:top-24 mt-2 w-[calc(100vw-1.5rem)] sm:w-56 max-h-[70vh] overflow-y-auto rounded-lg border border-white/10 bg-[#1a1a1a] shadow-2xl lg:hidden z-[60]"
     role="menu"
     aria-label="Mobile navigation"
   >
@@ -255,8 +255,8 @@ useEffect(() => {
       {showSearch && (
         <div
           ref={panelRef}
-          className="fixed right-6 z-[60]"
-          style={{ top: NAV_HEIGHT + 8 }} // 8px below the navbar
+          className="fixed right-4 sm:right-6 z-[60]"
+          style={{ top: 88 }} // 8px below the navbar (80px + 8px)
         >
           <form
             onSubmit={onSubmit}

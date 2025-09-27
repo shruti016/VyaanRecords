@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import Footer from "../components/Footer";
 
 
 /* Minimal inline icons (stroke/currentColor) */
@@ -40,7 +39,7 @@ const LinkedInIcon = (props) => (
 );
 
 export default function ContactPage() {
-  const [sent, setSent] = useState(false);
+  const [sent] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -77,64 +76,68 @@ export default function ContactPage() {
       }).catch((err) => console.error("notify failed:", err));
   
     } catch (err) {
+      console.error("Contact form error:", err);
       alert("Network error. Please try again.");
     }
   }
   
   return (
-    // Full viewport, black bg, no scroll
-    <main className="fixed inset-0 bg-black text-white overflow-hidden">
-      {/* If your navbar is fixed, this top padding prevents overlap. Adjust if needed. */}
-      <section className="h-full pt-[-10px]">
-        {/* Page width & vertical centering to match your other pages’ rhythm */}
-        <div className="mx-auto h-full max-w-5xl xl:max-w-7xl px-6 h-[calc(100svh-64px)]">
-          <div className="grid h-full grid-cols-1 md:grid-cols-2 items-center gap-y-10 md:gap-x-[550px]">
-            {/* LEFT: FORM (as you requested) */}
-            <div className="order-1 md:order-none">
-              <h1 className="text-5xl md:text-6xl font-extrabold mb-4">Contact Us</h1>
+    // Responsive layout optimized for desktop viewport
+    <main className="min-h-screen bg-black text-white">
+      {/* Proper spacing for fixed navbar */}
+      <section className="pt-20 sm:pt-24 pb-8 sm:pb-12 lg:pb-16">
+        {/* Responsive container */}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center lg:min-h-[calc(100vh-120px)]">
+            {/* LEFT: FORM */}
+            <div className="order-2 lg:order-1">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold mb-4 sm:mb-6 lg:mb-8">Contact Us</h1>
 
               {sent ? (
-                <p className="text-green-400 text-sm mt-2">Email sent successfully!</p>
+                <div className="text-center py-6 lg:py-8">
+                  <p className="text-green-400 text-lg font-medium">Email sent successfully!</p>
+                  <p className="text-gray-400 text-sm mt-2">We&apos;ll get back to you soon.</p>
+                </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 lg:space-y-5">
                   <div>
-                    <label htmlFor="email" className="block text-sm mb-2">Your email</label>
+                    <label htmlFor="email" className="block text-sm sm:text-base mb-2 font-medium">Your email</label>
                     <input
                       id="email"
                       name="email"
                       type="email"
                       required
                       placeholder="you@example.com"
-                      className="w-full md:w-[600px] rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm px-3 py-3 focus:outline-none focus:border-white/20"
+                      className="w-full rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 lg:py-3.5 focus:outline-none focus:border-white/20 focus:ring-2 focus:ring-[#9A4DFF]/20 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm mb-2">Subject</label>
+                    <label htmlFor="subject" className="block text-sm sm:text-base mb-2 font-medium">Subject</label>
                     <input
                       id="subject"
                       name="subject"
                       type="text"
                       required
                       placeholder="Project / Session"
-                      className="w-full md:w-[600px] rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm px-3 py-3 focus:outline-none focus:border-white/20"
+                      className="w-full rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 lg:py-3.5 focus:outline-none focus:border-white/20 focus:ring-2 focus:ring-[#9A4DFF]/20 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm mb-2">Message</label>
+                    <label htmlFor="message" className="block text-sm sm:text-base mb-2 font-medium">Message</label>
                     <textarea
                       id="message"
                       name="message"
-                      rows={5}
+                      rows={3}
                       placeholder="Tell us about your project..."
-                      className="w-full md:w-[600px] resize-none rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm px-3 py-3 focus:outline-none focus:border-white/20"
+                      className="w-full resize-vertical rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 lg:py-3.5 focus:outline-none focus:border-white/20 focus:ring-2 focus:ring-[#9A4DFF]/20 transition-all"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full md:w-[600px] rounded-lg py-3 font-medium bg-[#9A4DFF] hover:bg-[#8740f0] transition"
+                    className="w-full rounded-lg py-2.5 sm:py-3 lg:py-3.5 font-medium bg-[#9A4DFF] hover:bg-[#8740f0] active:bg-[#7a3ae8] transition-colors focus:ring-2 focus:ring-[#9A4DFF]/50 focus:ring-offset-2 focus:ring-offset-black min-h-[44px] text-sm sm:text-base"
                   >
                     Send Message
                   </button>
@@ -143,74 +146,70 @@ export default function ContactPage() {
             </div>
 
             {/* RIGHT: INFO */}
-            <div className="md:pl-6 flex flex-col justify-start mt-[56px]">
-              <div className="grid grid-cols-[42px_1fr] gap-y-4 gap-x-2 text-white/80 ">
+            <div className="order-1 lg:order-2 lg:pl-6 xl:pl-8">
+              <div className="grid grid-cols-[36px_1fr] sm:grid-cols-[42px_1fr] gap-y-3 sm:gap-y-4 lg:gap-y-5 gap-x-3 text-white/80">
                 {/* emails */}
                 <div className="flex items-start justify-center">
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-white">
-                    <MailIcon className="w-4 h-4" />
+                  <span className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/10 text-white">
+                    <MailIcon className="w-3 h-3 sm:w-4 sm:h-4" />
                   </span>
                 </div>
-                <div className="leading-6 text-[17px] md:text-lg">
-                  <a href="mailto:info.vyaanrecords@gmail.com" className="underline hover:text-white">
+                <div className="leading-5 sm:leading-6 text-sm sm:text-base">
+                  <a href="mailto:info.vyaanrecords@gmail.com" className="underline hover:text-white break-all">
                     info.vyaanrecords@gmail.com
                   </a>
                   <br />
-                  <a href="mailto:vyaanrecords@gmail.com" className="underline hover:text-white">
+                  <a href="mailto:vyaanrecords@gmail.com" className="underline hover:text-white break-all">
                     vyaanrecords@gmail.com
                   </a>
                 </div>
 
                 {/* location */}
                 <div className="flex items-center justify-center">
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-white">
-                    <LocationIcon className="w-4 h-4" />
+                  <span className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/10 text-white">
+                    <LocationIcon className="w-3 h-3 sm:w-4 sm:h-4" />
                   </span>
                 </div>
-                <div className="leading-6 flex items-center text-[17px] md:text-lg ">Pune, India</div>
+                <div className="leading-5 sm:leading-6 flex items-center text-sm sm:text-base">Pune, India</div>
 
                 {/* socials */}
                 <div />
-                <div className="flex items-center gap-3">
-                  <span className="text-white/90 font-medium text-[17px] md:text-lg">Follow us on:</span>
-                  <Link
-                    href="https://www.instagram.com/"
-                    target="_blank"
-                    aria-label="Instagram"
-                    className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white"
-                  >
-                    <InstagramIcon className="w-5 h-5" />
-                  </Link>
-                  <Link
-                    href="https://www.facebook.com/"
-                    target="_blank"
-                    aria-label="Facebook"
-                    className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white"
-                  >
-                    <FacebookIcon className="w-5 h-5" />
-                  </Link>
-                  <Link
-                    href="https://www.linkedin.com/"
-                    target="_blank"
-                    aria-label="LinkedIn"
-                    className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white"
-                  >
-                    <LinkedInIcon className="w-5 h-5" />
-                  </Link>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                  <span className="text-white/90 font-medium text-sm sm:text-base">Follow us on:</span>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <Link
+                      href="https://www.instagram.com/"
+                      target="_blank"
+                      aria-label="Instagram"
+                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white transition-colors"
+                    >
+                      <InstagramIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </Link>
+                    <Link
+                      href="https://www.facebook.com/"
+                      target="_blank"
+                      aria-label="Facebook"
+                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white transition-colors"
+                    >
+                      <FacebookIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </Link>
+                    <Link
+                      href="https://www.linkedin.com/"
+                      target="_blank"
+                      aria-label="LinkedIn"
+                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white transition-colors"
+                    >
+                      <LinkedInIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-            {/* End right */}
             
           </div>
-          {/* Footer pinned inside the viewport, slightly above the edge */}
-        <div className="absolute inset-x-0 bottom-4">
-          <Footer />
         </div>
-        </div>
-        
       </section>
-     
+      
     </main>
   );
 }

@@ -139,7 +139,7 @@ export default function MusicProductionPage() {
     <div className="min-h-screen">
       {/* Header */}
       <div className="mx-auto max-w-6xl px-6 pt-8 text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold">Music Production</h1>
+        <h1 className="text-4xl md:text-6xl font-extrabold">Music Production</h1>
         <p className="text-white/70 max-w-3xl mx-auto mt-4">
           End-to-end production for songs, jingles, ads, films, and series—
           composition, arrangement, sound selection, and final deliverables tailored to your brief.

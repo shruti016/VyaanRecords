@@ -32,7 +32,7 @@ const BOXES = [
 
 export default function AboutSection() {
   const [view, setView] = useState("about");
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
 
   // Switcher that also updates the URL hash so back/forward works
   const switchTo = (id) =>
@@ -69,13 +69,8 @@ export default function AboutSection() {
       "
     >
       {/* Heading + copy (no card background) */}
-      <div className="mx-auto max-w-none px-4 sm:px-6 lg:px-10 text-center">
-        <h2
-          className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3"
-          // Optional: click heading to go back to About
-          onClick={() => view !== "about" && switchTo("about")}
-          role={view !== "about" ? "button" : undefined}
-        >
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold font-mono tracking-tight mb-3">
           {VIEWS[view].heading}
         </h2>
 
@@ -89,15 +84,15 @@ export default function AboutSection() {
           </button>
         )}
 
-        <div className="space-y-5 text-lg text-gray-300 leading-relaxed">
+        <div className="space-y-4 sm:space-y-5 text-base sm:text-lg text-gray-300 leading-relaxed">
           {VIEWS[view].body.map((p, i) => (
-            <p key={i}>{p}</p>
+            <p key={`${view}-${i}`}>{p}</p>
           ))}
         </div>
       </div>
 
       {/* Always-visible boxes */}
-      <div className="mx-auto max-w-4xl px-6 lg:px-8 mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {BOXES.map((b) => (
           <button
             key={b.id}
@@ -106,19 +101,19 @@ export default function AboutSection() {
               ${view === b.id ? "border-purple-500" : "border-white/10 hover:border-white/25"}`}
             aria-pressed={view === b.id}
           >
-            <div className="relative h-44 w-full">
+            <div className="relative h-32 sm:h-40 md:h-44 w-full">
               <Image
                 src={b.img}
                 alt={b.alt}
                 fill
                 className="object-cover opacity-90 group-hover:opacity-100 transition"
-                sizes="(max-width: 768px) 100vw, 600px"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 600px"
               />
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition" />
             </div>
-            <div className="p-4">
-              <h3 className="text-xl font-semibold">{b.title}</h3>
-              <p className="mt-1 text-sm text-gray-400">
+            <div className="p-3 sm:p-4">
+              <h3 className="text-lg sm:text-xl font-semibold">{b.title}</h3>
+              <p className="mt-1 text-xs sm:text-sm text-gray-400">
                 {b.id === "team" ? "Who we are and how we work" : "What drives our studio forward"}
               </p>
             </div>

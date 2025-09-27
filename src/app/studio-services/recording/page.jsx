@@ -143,7 +143,7 @@ export default function RecordingPage() {
     <div className="min-h-screen">
       {/* Page header */}
       <div className="mx-auto max-w-6xl px-6 pt-8">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-center mt-4">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-center mt-4">
           Recordings
         </h1>
         <p className="text-white/70 max-w-3xl mx-auto text-center mt-4">

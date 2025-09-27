@@ -142,7 +142,7 @@ export default function SoundDesignPage() {
     <div className="min-h-screen">
       {/* Centered heading */}
       <div className="mx-auto max-w-6xl px-6 pt-8 text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold">Sound Design</h1>
+        <h1 className="text-4xl md:text-6xl font-extrabold">Sound Design</h1>
         <p className="text-white/70 max-w-3xl mx-auto mt-4">
           Narrative-driven sound for ads, films, songs, and podcasts—clean dialog,
           immersive atmospheres, ear-candy, and polished mixes that elevate the story.

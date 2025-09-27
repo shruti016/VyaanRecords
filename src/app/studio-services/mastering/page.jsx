@@ -181,7 +181,7 @@ export default function MasteringPage() {
     <div className="min-h-screen">
       {/* Centered heading + intro */}
       <div className="mx-auto max-w-6xl px-6 pt-8 text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold">Mixing/Mastering</h1>
+        <h1 className="text-4xl md:text-6xl font-extrabold">Mixing/Mastering</h1>
         <p className="text-white/70 max-w-3xl mx-auto mt-4">
           Final polish and delivery-ready loudness for songs, podcasts, ads, and films—
           clarity, punch, translation, and consistent tone across all platforms.
