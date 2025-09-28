@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
 
 
 /* Minimal inline icons (stroke/currentColor) */
@@ -39,45 +41,43 @@ const LinkedInIcon = (props) => (
 );
 
 export default function ContactPage() {
-  const [sent] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setIsSending(true);
+
     const f = e.currentTarget;
-    const payload = {
-      email: f.email.value,
+
+    // Read EmailJS config from env (must be NEXT_PUBLIC_* to be exposed client-side)
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setIsSending(false);
+      toast.error("Email service is not configured. Please try again later.");
+      console.error("Missing EmailJS env vars: NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, NEXT_PUBLIC_EMAILJS_PUBLIC_KEY");
+      return;
+    }
+
+    const templateParams = {
+      from_email: f.email.value,
       subject: f.subject.value,
       message: f.message.value,
     };
-  
+
     try {
-      // 1) Save to file (authoritative store)
-      const res = await fetch("/api/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-  
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        alert(`Failed to send: ${data?.error || "Server error"}`);
-        return;
-      }
-  
-      // ✅ Always show success popup (save worked)
-      alert("Message sent successfully!");
+      await emailjs.send(serviceId, templateId, templateParams, { publicKey });
+      setSent(true);
       f.reset();
-  
-      // 2) Fire-and-forget email (won’t block UI; errors logged only)
-      fetch("/api/notify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }).catch((err) => console.error("notify failed:", err));
-  
+      toast.success("Email sent successfully! We'll get back to you soon.");
     } catch (err) {
-      console.error("Contact form error:", err);
-      alert("Network error. Please try again.");
+      console.error("EmailJS send failed:", err);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsSending(false);
     }
   }
   
@@ -109,6 +109,7 @@ export default function ContactPage() {
                       required
                       placeholder="you@example.com"
                       className="w-full rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 lg:py-3.5 focus:outline-none focus:border-white/20 focus:ring-2 focus:ring-[#9A4DFF]/20 transition-all"
+                      disabled={isSending}
                     />
                   </div>
 
@@ -121,6 +122,7 @@ export default function ContactPage() {
                       required
                       placeholder="Project / Session"
                       className="w-full rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 lg:py-3.5 focus:outline-none focus:border-white/20 focus:ring-2 focus:ring-[#9A4DFF]/20 transition-all"
+                      disabled={isSending}
                     />
                   </div>
 
@@ -132,14 +134,16 @@ export default function ContactPage() {
                       rows={3}
                       placeholder="Tell us about your project..."
                       className="w-full resize-vertical rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 lg:py-3.5 focus:outline-none focus:border-white/20 focus:ring-2 focus:ring-[#9A4DFF]/20 transition-all"
+                      disabled={isSending}
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full rounded-lg py-2.5 sm:py-3 lg:py-3.5 font-medium bg-[#9A4DFF] hover:bg-[#8740f0] active:bg-[#7a3ae8] transition-colors focus:ring-2 focus:ring-[#9A4DFF]/50 focus:ring-offset-2 focus:ring-offset-black min-h-[44px] text-sm sm:text-base"
+                    className="w-full rounded-lg py-2.5 sm:py-3 lg:py-3.5 font-medium bg-[#9A4DFF] hover:bg-[#8740f0] active:bg-[#7a3ae8] transition-colors focus:ring-2 focus:ring-[#9A4DFF]/50 focus:ring-offset-2 focus:ring-offset-black min-h-[44px] text-sm sm:text-base disabled:opacity-60 disabled:cursor-not-allowed"
+                    disabled={isSending}
                   >
-                    Send Message
+                    {isSending ? "Sending..." : "Send Message"}
                   </button>
                 </form>
               )}
