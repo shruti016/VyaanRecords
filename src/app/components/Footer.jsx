@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex items-center">
         {/* logo on the left (same position, bigger) */}
         <Image
-          src="/images/logo-white.PNG"   // put the file at public/images/logo-only.png
+          src="/images/Logo/logo-white.png"
           alt="Vyaan Records"
           width={56}
           height={56}
