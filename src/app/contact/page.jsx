@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Footer from "../components/Footer";
+import emailjs from "@emailjs/browser";
 
 
 /* Minimal inline icons (stroke/currentColor) */
@@ -38,48 +39,43 @@ const LinkedInIcon = (props) => (
     <path d="M4.98 3.5A2.49 2.49 0 1 0 5 8.48a2.49 2.49 0 0 0-.02-4.98ZM3.5 9h3v12h-3V9Zm6 0h2.86v1.64h.04c.4-.76 1.39-1.56 2.86-1.56 3.06 0 3.63 2.01 3.63 4.62V21h-3v-5.3c0-1.26-.02-2.88-1.76-2.88-1.77 0-2.04 1.38-2.04 2.8V21h-3V9Z" />
   </svg>
 );
+emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "public_G9PYvn7Xp9bfeifhV");
 
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    const f = e.currentTarget;
-    const payload = {
-      email: f.email.value,
-      subject: f.subject.value,
-      message: f.message.value,
-    };
-  
-    try {
-      // 1) Save to file (authoritative store)
-      const res = await fetch("/api/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-  
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        alert(`Failed to send: ${data?.error || "Server error"}`);
-        return;
-      }
-  
-      // ✅ Always show success popup (save worked)
-      alert("Message sent successfully!");
-      f.reset();
-  
-      // 2) Fire-and-forget email (won’t block UI; errors logged only)
-      fetch("/api/notify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }).catch((err) => console.error("notify failed:", err));
-  
-    } catch (err) {
-      alert("Network error. Please try again.");
-    }
+  e.preventDefault();
+  const f = e.currentTarget;
+
+  const templateParams = {
+    email: f.email.value,   
+    phone: f.countryCode.value + f.phone.value,  // -> {{phone}}
+    subject: f.subject.value,  // -> {{subject}}
+    message: f.message.value,  // -> {{message}}
+  };
+
+  try {
+    console.log("EMAILJS KEYS?", {
+      service: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      template: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+      publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    });
+    
+    await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+      templateParams,
+    );
+    alert("Message sent successfully!");
+    f.reset();
+    setSent(true);
+  } catch (err) {
+    console.error(err);
+    alert("Could not send right now. Please try again.");
   }
+}
+
   
   return (
     // Full viewport, black bg, no scroll
@@ -98,6 +94,69 @@ export default function ContactPage() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
+                    <label className="block text-sm mb-2">Contact number</label>
+                    <div className="flex gap-3 w-full md:w-[600px]">
+                      <select
+                        name="countryCode"
+                        className="rounded-lg bg-[#121317] border border-white/10 text-gray-100 text-sm px-3 py-3 focus:outline-none focus:border-white/20 min-w-[120px]"
+                      >
+                        <option value="+91">India +91</option>
+                        <option value="+1">USA +1</option>
+                        <option value="+44">UK +44</option>
+                        <option value="+49">Germany +49</option>
+                        <option value="+33">France +33</option>
+                        <option value="+86">China +86</option>
+                        <option value="+81">Japan +81</option>
+                        <option value="+61">Australia +61</option>
+                        <option value="+55">Brazil +55</option>
+                        <option value="+7">Russia +7</option>
+                        <option value="+39">Italy +39</option>
+                        <option value="+34">Spain +34</option>
+                        <option value="+31">Netherlands +31</option>
+                        <option value="+46">Sweden +46</option>
+                        <option value="+47">Norway +47</option>
+                        <option value="+45">Denmark +45</option>
+                        <option value="+41">Switzerland +41</option>
+                        <option value="+43">Austria +43</option>
+                        <option value="+32">Belgium +32</option>
+                        <option value="+351">Portugal +351</option>
+                        <option value="+30">Greece +30</option>
+                        <option value="+90">Turkey +90</option>
+                        <option value="+966">Saudi Arabia +966</option>
+                        <option value="+971">UAE +971</option>
+                        <option value="+965">Kuwait +965</option>
+                        <option value="+974">Qatar +974</option>
+                        <option value="+973">Bahrain +973</option>
+                        <option value="+968">Oman +968</option>
+                        <option value="+20">Egypt +20</option>
+                        <option value="+27">South Africa +27</option>
+                        <option value="+234">Nigeria +234</option>
+                        <option value="+254">Kenya +254</option>
+                        <option value="+233">Ghana +233</option>
+                        <option value="+880">Bangladesh +880</option>
+                        <option value="+92">Pakistan +92</option>
+                        <option value="+977">Nepal +977</option>
+                        <option value="+94">Sri Lanka +94</option>
+                        <option value="+975">Bhutan +975</option>
+                        <option value="+960">Maldives +960</option>
+                      </select>
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="9876543210"
+                        pattern="[0-9]{10,15}"
+                        inputMode="numeric"
+                        onInput={(e) => {
+                          // Remove any non-numeric characters
+                          e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                        }}
+                        className="flex-1 rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm px-3 py-3 focus:outline-none focus:border-white/20"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
                     <label htmlFor="email" className="block text-sm mb-2">Your email</label>
                     <input
                       id="email"
@@ -108,7 +167,7 @@ export default function ContactPage() {
                       className="w-full md:w-[600px] rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm px-3 py-3 focus:outline-none focus:border-white/20"
                     />
                   </div>
-
+                  
                   <div>
                     <label htmlFor="subject" className="block text-sm mb-2">Subject</label>
                     <input
@@ -143,7 +202,7 @@ export default function ContactPage() {
             </div>
 
             {/* RIGHT: INFO */}
-            <div className="md:pl-6 flex flex-col justify-start mt-[56px]">
+            <div className="md:pl-6 flex flex-col justify-start mt-[-220px]">
               <div className="grid grid-cols-[42px_1fr] gap-y-4 gap-x-2 text-white/80 ">
                 {/* emails */}
                 <div className="flex items-start justify-center">
