@@ -146,16 +146,16 @@ export default function ContactPage() {
 
   
   return (
-    // Responsive layout optimized for desktop viewport
+    // Responsive layout optimized for mobile and desktop
     <main className="min-h-screen bg-black text-white">
-      {/* Proper spacing for fixed navbar */}
-      <section className="pt-20 sm:pt-24 pb-8 sm:pb-12 lg:pb-16">
+      {/* Minimal spacing for better mobile experience */}
+      <section className="pt-12 sm:pt-16 pb-8 sm:pb-12 lg:pb-16">
         {/* Responsive container */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center lg:min-h-[calc(100vh-120px)]">
-            {/* LEFT: FORM */}
-            <div className="order-2 lg:order-1">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold mb-4 sm:mb-6 lg:mb-8">Contact Us</h1>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 xl:gap-16 items-start lg:items-center lg:min-h-[calc(100vh-100px)]">
+            {/* LEFT: FORM - Shows first on mobile, second on desktop */}
+            <div className="order-1 lg:order-1">
+              <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-extrabold mb-4 sm:mb-6 lg:mb-8">Contact Us</h1>
 
               {sent ? (
                 <div className="text-center py-6 lg:py-8">
@@ -242,9 +242,9 @@ export default function ContactPage() {
               )}
             </div>
 
-            {/* RIGHT: INFO */}
-            <div className="order-1 lg:order-2 lg:pl-6 xl:pl-8">
-              <div className="grid grid-cols-[36px_1fr] sm:grid-cols-[42px_1fr] gap-y-3 sm:gap-y-4 lg:gap-y-5 gap-x-3 text-white/80">
+            {/* RIGHT: INFO - Shows second on mobile, first on desktop */}
+            <div className="order-2 lg:order-2 lg:pl-6 xl:pl-8 mt-8 lg:mt-0">
+              <div className="grid grid-cols-[36px_1fr] sm:grid-cols-[42px_1fr] gap-y-4 sm:gap-y-5 lg:gap-y-6 gap-x-3 sm:gap-x-4 text-white/80">
                 {/* emails */}
                 <div className="flex items-start justify-center">
                   <span className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/10 text-white">
@@ -271,9 +271,9 @@ export default function ContactPage() {
 
                 {/* socials */}
                 <div />
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                   <span className="text-white/90 font-medium text-sm sm:text-base">Follow us on:</span>
-                  <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <Link
                       href="https://www.instagram.com/"
                       target="_blank"
