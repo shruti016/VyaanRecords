@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
@@ -44,6 +44,67 @@ emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "public_G9PYvn7Xp9bfe
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [selectedCountryCode, setSelectedCountryCode] = useState("+91");
+  const [countdown, setCountdown] = useState(5);
+
+  // Static list of country codes for developed and rapidly developing countries
+  const countryCodes = [
+    { code: "+91", country: "India", flag: "🇮🇳", flagUrl: "https://flagcdn.com/w20/in.png" },
+    { code: "+1", country: "US/Canada", flag: "🇺🇸", flagUrl: "https://flagcdn.com/w20/us.png" },
+    { code: "+44", country: "UK", flag: "🇬🇧", flagUrl: "https://flagcdn.com/w20/gb.png" },
+    { code: "+49", country: "Germany", flag: "🇩🇪", flagUrl: "https://flagcdn.com/w20/de.png" },
+    { code: "+33", country: "France", flag: "🇫🇷", flagUrl: "https://flagcdn.com/w20/fr.png" },
+    { code: "+39", country: "Italy", flag: "🇮🇹", flagUrl: "https://flagcdn.com/w20/it.png" },
+    { code: "+34", country: "Spain", flag: "🇪🇸", flagUrl: "https://flagcdn.com/w20/es.png" },
+    { code: "+31", country: "Netherlands", flag: "🇳🇱", flagUrl: "https://flagcdn.com/w20/nl.png" },
+    { code: "+41", country: "Switzerland", flag: "🇨🇭", flagUrl: "https://flagcdn.com/w20/ch.png" },
+    { code: "+46", country: "Sweden", flag: "🇸🇪", flagUrl: "https://flagcdn.com/w20/se.png" },
+    { code: "+47", country: "Norway", flag: "🇳🇴", flagUrl: "https://flagcdn.com/w20/no.png" },
+    { code: "+45", country: "Denmark", flag: "🇩🇰", flagUrl: "https://flagcdn.com/w20/dk.png" },
+    { code: "+358", country: "Finland", flag: "🇫🇮", flagUrl: "https://flagcdn.com/w20/fi.png" },
+    { code: "+43", country: "Austria", flag: "🇦🇹", flagUrl: "https://flagcdn.com/w20/at.png" },
+    { code: "+32", country: "Belgium", flag: "🇧🇪", flagUrl: "https://flagcdn.com/w20/be.png" },
+    { code: "+353", country: "Ireland", flag: "🇮🇪", flagUrl: "https://flagcdn.com/w20/ie.png" },
+    { code: "+86", country: "China", flag: "🇨🇳", flagUrl: "https://flagcdn.com/w20/cn.png" },
+    { code: "+81", country: "Japan", flag: "🇯🇵", flagUrl: "https://flagcdn.com/w20/jp.png" },
+    { code: "+82", country: "South Korea", flag: "🇰🇷", flagUrl: "https://flagcdn.com/w20/kr.png" },
+    { code: "+65", country: "Singapore", flag: "🇸🇬", flagUrl: "https://flagcdn.com/w20/sg.png" },
+    { code: "+60", country: "Malaysia", flag: "🇲🇾", flagUrl: "https://flagcdn.com/w20/my.png" },
+    { code: "+66", country: "Thailand", flag: "🇹🇭", flagUrl: "https://flagcdn.com/w20/th.png" },
+    { code: "+61", country: "Australia", flag: "🇦🇺", flagUrl: "https://flagcdn.com/w20/au.png" },
+    { code: "+64", country: "New Zealand", flag: "🇳🇿", flagUrl: "https://flagcdn.com/w20/nz.png" },
+    { code: "+55", country: "Brazil", flag: "🇧🇷", flagUrl: "https://flagcdn.com/w20/br.png" },
+    { code: "+52", country: "Mexico", flag: "🇲🇽", flagUrl: "https://flagcdn.com/w20/mx.png" },
+    { code: "+54", country: "Argentina", flag: "🇦🇷", flagUrl: "https://flagcdn.com/w20/ar.png" },
+    { code: "+971", country: "UAE", flag: "🇦🇪", flagUrl: "https://flagcdn.com/w20/ae.png" },
+    { code: "+966", country: "Saudi Arabia", flag: "🇸🇦", flagUrl: "https://flagcdn.com/w20/sa.png" },
+    { code: "+974", country: "Qatar", flag: "🇶🇦", flagUrl: "https://flagcdn.com/w20/qa.png" },
+  ];
+
+  // Handle countdown timer and reset form after successful submission
+  useEffect(() => {
+    let timer;
+    if (sent) {
+      timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            // Reset form state
+            setSent(false);
+            setCountdown(5);
+            setSelectedCountryCode("+91");
+            return 5;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    
+    return () => {
+      if (timer) {
+        clearInterval(timer);
+      }
+    };
+  }, [sent]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -65,6 +126,7 @@ export default function ContactPage() {
 
     const templateParams = {
       from_email: f.email.value,
+      phone: f.phone.value ? `${selectedCountryCode} ${f.phone.value}` : '',
       subject: f.subject.value,
       message: f.message.value,
     };
@@ -99,6 +161,9 @@ export default function ContactPage() {
                 <div className="text-center py-6 lg:py-8">
                   <p className="text-green-400 text-lg font-medium">Email sent successfully!</p>
                   <p className="text-gray-400 text-sm mt-2">We&apos;ll get back to you soon.</p>
+                  <p className="text-gray-500 text-xs mt-3">
+                    Form will reset in <span className="text-[#9A4DFF] font-semibold">{countdown}</span> seconds...
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 lg:space-y-5">
@@ -113,6 +178,32 @@ export default function ContactPage() {
                       className="w-full rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 lg:py-3.5 focus:outline-none focus:border-white/20 focus:ring-2 focus:ring-[#9A4DFF]/20 transition-all"
                       disabled={isSending}
                     />
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-sm sm:text-base mb-2 font-medium">Phone Number (Optional)</label>
+                    <div className="flex gap-2">
+                      <select
+                        value={selectedCountryCode}
+                        onChange={(e) => setSelectedCountryCode(e.target.value)}
+                        className="rounded-lg bg-[#121317] border border-white/10 text-gray-100 text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 lg:py-3.5 focus:outline-none focus:border-white/20 focus:ring-2 focus:ring-[#9A4DFF]/20 transition-all min-w-[120px] sm:min-w-[140px]"
+                        disabled={isSending}
+                      >
+                        {countryCodes.map((country) => (
+                          <option key={country.code} value={country.code} className="bg-[#121317]">
+                            {country.flag} {country.code}
+                          </option>
+                        ))}
+                      </select>
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="Phone number"
+                        className="flex-1 rounded-lg bg-[#121317] border border-white/10 placeholder-white/40 text-gray-100 text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 lg:py-3.5 focus:outline-none focus:border-white/20 focus:ring-2 focus:ring-[#9A4DFF]/20 transition-all"
+                        disabled={isSending}
+                      />
+                    </div>
                   </div>
                   
                   <div>

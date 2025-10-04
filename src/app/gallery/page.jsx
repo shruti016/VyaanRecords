@@ -1,7 +1,6 @@
 // src/app/gallery/page.jsx
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import Footer from "../components/Footer";
 
@@ -76,11 +75,14 @@ function FlipCard({
         {/* FRONT (natural height) */}
         <div className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] [backface-visibility:hidden]">
           {frontSrc ? (
-            <img
+            <Image
               src={frontSrc}
               alt={altFront}
+              width={800}
+              height={600}
               className="w-full h-auto block"
               loading="lazy"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
             <ComingSoon />
@@ -90,11 +92,14 @@ function FlipCard({
         {/* BACK (absolute overlay; never crops) */}
         <div className="absolute inset-0 overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] [transform:rotateY(180deg)] [backface-visibility:hidden]">
           {backSrc ? (
-            <img
+            <Image
               src={backSrc}
               alt={altBack}
+              width={800}
+              height={600}
               className="w-full h-full object-contain bg-black/30"
               loading="lazy"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
             <ComingSoon />
@@ -197,8 +202,11 @@ export default function GalleryPage() {
   // which cards are currently showing their back (for heading)
   const [backSet, setBackSet] = useState(new Set());
 
-  const forceBack =
-    mode === "bts" ? true : mode === "studio" ? false : null;
+  const forceBack = (() => {
+    if (mode === "bts") return true;
+    if (mode === "studio") return false;
+    return null;
+  })();
 
     const handleFlip = (i, isBack) => {
         if (mode !== null) {

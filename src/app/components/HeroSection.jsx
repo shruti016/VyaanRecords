@@ -4,7 +4,7 @@ import React from "react";
 const HeroSection = () => {
   return (
     // spacing so the video sits neatly below your fixed navbar
-    <section className="relative z-0 bg-[#121212] -mt-4 sm:-mt-6 md:-mt-12 pb-8 sm:pb-12 md:pb-16">
+    <section className="relative z-0 bg-[#121212] sm:mt-8 lg:mt-4 pb-8 sm:pb-12 md:pb-16">
       {/* page gutter + max width similar to the reference site */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* 16:9 framed video with subtle ring/shadow */}
@@ -17,8 +17,6 @@ const HeroSection = () => {
             muted
             loop
             playsInline
-            controls
-            controlsList="nofullscreen nodownload noremoteplayback"
           />
         </div>
       </div>
