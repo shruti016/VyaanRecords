@@ -39,6 +39,7 @@ const LinkedInIcon = (props) => (
     <path d="M4.98 3.5A2.49 2.49 0 1 0 5 8.48a2.49 2.49 0 0 0-.02-4.98ZM3.5 9h3v12h-3V9Zm6 0h2.86v1.64h.04c.4-.76 1.39-1.56 2.86-1.56 3.06 0 3.63 2.01 3.63 4.62V21h-3v-5.3c0-1.26-.02-2.88-1.76-2.88-1.77 0-2.04 1.38-2.04 2.8V21h-3V9Z" />
   </svg>
 );
+emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "public_G9PYvn7Xp9bfeifhV");
 
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
@@ -80,6 +81,7 @@ export default function ContactPage() {
       setIsSending(false);
     }
   }
+
   
   return (
     // Responsive layout optimized for desktop viewport
@@ -112,7 +114,7 @@ export default function ContactPage() {
                       disabled={isSending}
                     />
                   </div>
-
+                  
                   <div>
                     <label htmlFor="subject" className="block text-sm sm:text-base mb-2 font-medium">Subject</label>
                     <input
