@@ -122,3 +122,69 @@ img, video, svg, canvas {
     font-size: 16px;
   }
 }
+
+/* === Global background image for ALL pages === */
+html, body { height: 100%; }
+
+body {
+  /* fallback behind the image */
+  background-color: #0b0b0b;
+
+  /* your image from /public/images */
+  background-image: url('/images/Background.jpg');
+
+  /* make it look right on phones/tablets/desktops */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  /* mobile-friendly scroll (don’t use fixed) */
+  background-attachment: scroll;
+}
+
+/* ——— Contact page specific background (blurred) ——— */
+.contact-bg { 
+  position: relative;
+}
+
+/* Blurred background layer that fits all screens */
+.contact-bg::before {
+  content: "";
+  position: fixed;              /* stays behind while scrolling */
+  inset: 0;
+  background-image: url("/images/Background 2.jpg"); /* note the %20 for the space */
+  background-size: cover;       /* fills phones/tablets/desktops */
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(2px);            /* slight blur as requested */
+  transform: scale(1.03);       /* prevents edge clipping after blur */
+  z-index: -1;                  /* keeps it behind your content */
+}
+
+/* —— Hero page fixed, full-viewport background —— */
+.hero-bg-layer {
+  position: fixed;
+  inset: 0;
+  background-image: url("/images/Background.jpg");
+  background-size: cover;        /* fits phones/tablets/desktops */
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;                   /* behind all content */
+  pointer-events: none;          /* never block clicks */
+}
+
+/* ensure the hero section doesn't paint over it */
+#home-hero { 
+  background-color: transparent !important; 
+}
+
+/* Keep the hero background safely behind EVERYTHING */
+.hero-bg-layer {
+  z-index: -2;           /* lower than any page content */
+}
+
+/* Ensure the footer always sits above the hero bg on the home page */
+body:has(#home-hero) footer {
+  position: relative;
+  z-index: 1;
+}

@@ -10,27 +10,27 @@ const CREATIVE_CONTENT_SECTIONS = [
     id: "lyrics-writing",
     title: "Lyrics Writing",
     items: [
-      { title: "Pop Single – English/Hindi", img: "/images/creative content/Song writing 1.jpg", href: "#" },
-      { title: "Indie Ballad – Metaphoric", img: "/images/creative content/Song writing 3.jpg", href: "#" },
-      { title: "Rap Verse – Punchlines", img: "/images/creative content/Song writing 2.jpg", href: "#" },
+      { title: "English/Hindi/Marathi/Urdu", img: "/images/creative content/Song writing 1.jpg", href: "#" },
+      { title: "Regional Languages/Labels", img: "/images/creative content/Song writing 3.jpg", href: "#" },
+      { title: "Indie/Commercial", img: "/images/creative content/Song writing 2.jpg", href: "#" },
     ],
   },
   {
     id: "script-writing",
     title: "Script Writing",
     items: [
-      { title: "Ad Film – 30s : Concept & VO", img: "/images/creative content/Script 1.jpg", href: "#" },
-      { title: "Podcast – Episode Outline", img: "/images/creative content/Script 3.jpg", href: "#" },
-      { title: "Short Film – Narration Draft", img: "/images/creative content/Script 2.jpg", href: "#" },
+      { title: "Ad Films/Commercials", img: "/images/creative content/Script 1.jpg", href: "#" },
+      { title: "Podcasts/Videos", img: "/images/creative content/Script 3.jpg", href: "#" },
+      { title: "Short Films/Feature Films/OTTs", img: "/images/creative content/Script 2.jpg", href: "#" },
     ],
   },
   {
     id: "voice-over-content",
     title: "Voice-Over Content",
     items: [
-      { title: "Commercial Copy – CTA Focus", img: "/images/creative content/Voiceover 1.jpg", href: "#" },
-      { title: "Explainer – Clear Structure", img: "/images/creative content/Voiceover 3.jpg", href: "#" },
-      { title: "Corporate – Brand Tone", img: "/images/creative content/Voiceover 2.jpg", href: "#" },
+      { title: "Ads/Commercials", img: "/images/creative content/Voiceover 1.jpg", href: "#" },
+      { title: "Podcasts/Videos", img: "/images/creative content/Voiceover 3.jpg", href: "#" },
+      { title: "Short Films/Feature Films/OTTs", img: "/images/creative content/Voiceover 2.jpg", href: "#" },
     ],
   },
 ];
@@ -55,7 +55,7 @@ function ShowcaseCard({ item }) {
             </div>
           )}
         </div>
-        <div className="p-4">
+        <div className="p-4 bg-black">
           <h4 className="text-sm font-medium text-white/90 leading-snug">
             {item.title}
           </h4>

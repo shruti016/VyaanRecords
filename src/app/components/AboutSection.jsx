@@ -4,30 +4,34 @@ import Image from "next/image";
 
 const VIEWS = {
   about: {
-    heading: "ALLOW US TO INTRODUCE OURSELVES…",
+    heading: "ALLOW US TO INTRODUCE ",
+    subheading: "VYAAN RECORDS",
     body: [
-      "Vyaan Records is a creative music and sound studio crafting original songs, cinematic scores, and immersive audio experiences. From independent artists to films and brands, we bring stories to life through composition, production, mixing, and sound design. Blending artistry with innovation, we aim to create music that resonates, inspires, and leaves a lasting impact.",
+      "Vyaan Records is a modern creative studio dedicated to crafting original music, cinematic scores, and immersive sound experiences. From independent artists to films and brands, we bring stories to life through sound that connects, inspires, and endures.Combining artistic vision with cutting-edge production.",
+      " Vyaan Records delivers music that blends emotion with innovation. Designed to feel both professional and personal, our studio offers a warm, creative space where every artist can explore their unique style a place where quality sound meets modern musical imagination.",
+    ],
+  },
+  "Meet the Founder": {
+    heading: "Meet the Founder",
+    body: [
+      "Vyaan Records was founded by Vyaan in 2021, a passionate music producer with over seven years of professional experience. His musical journey began at the age of three, learning the Indian classical instrument tabla, which laid the foundation for his deep understanding of rhythm and sound. Over the years, Vyaan has learned and plays 14 different instruments, showcasing his versatility and deep connection with music that transcends genres and styles.",
+      "A certified Avid Pro Tools and Logic Pro user, Vyaan specializes in producing across all genres from film and series scores to commercial ads, original songs, and artist collaborations. He personally oversees every project, ensuring each client’s vision is understood, refined, and brought to life with precision and creativity. His dedication to quality, detail, and emotional depth defines the sound and spirit of Vyaan Records.",
     ],
   },
   team: {
     heading: "Team of Vyaan Records",
     body: [
-      "At Vyaan Records, our team is a blend of producers, sound designers, and musicians united by one vision — to create powerful audio that connects.",
-      "Every project is a collaboration of passion and precision, where creativity meets technical mastery to deliver music and sound that truly stand out.",
+      "At Vyaan Records, our team is a collective of passionate producers, sound designers, session musicians, mixing, and mastering engineers all driven by a shared vision to create powerful, high-quality audio that meets every client’s expectations. ",
+      "We take the time to truly understand each project’s needs, connect with our clients on a creative level, and provide guidance aligned with current industry trends ensuring every sound we deliver is both artistically fulfilling and market-ready.",
     ],
   },
-  vision: {
-    heading: "Vision",
-    body: [
-      "To blend classical roots with modern production and become Pune’s hub for cutting-edge sound innovation.",
-      "We champion indie voices, cinematic storytelling, and craft that stands the test of time.",
-    ],
-  },
+  
 };
 
 const BOXES = [
-  { id: "team", title: "Team", img: "/images/gallery/studio-6.jpg", alt: "Vyaan Records Team" },
-  { id: "vision", title: "Vision", img: "/images/gallery/studio-5.jpg", alt: "Vision" },
+  { id: "Meet the Founder", title: "Meet the Founder", img: "/images/Meet the founder.jpg", alt: "Meet the Founder" },
+  { id: "team", title: "Team", img: "/images/Team of Vyaan Records.png", alt: "Vyaan Records Team" },
+  
 ];
 
 export default function AboutSection() {
@@ -73,6 +77,13 @@ export default function AboutSection() {
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold font-mono tracking-tight mb-3">
           {VIEWS[view].heading}
         </h2>
+        
+        {/* --- New line added just below heading --- */}
+        {view === "about" && (
+          <h3 className="text-2xl md:text-4xl lg:text-5xl font-semibold font-mono tracking-tight mb-3">
+            {VIEWS[view].subheading}
+          </h3>
+        )}
 
         {/* Back to About link shows only when not on 'about' */}
         {view !== "about" && (
@@ -98,7 +109,7 @@ export default function AboutSection() {
             key={b.id}
             onClick={() => switchTo(b.id)}
             className={`group relative overflow-hidden rounded-2xl border transition text-left bg-transparent
-              ${view === b.id ? "border-purple-500" : "border-white/10 hover:border-white/25"}`}
+              ${view === b.id ? "border-transparent-200" : "border-white/10 hover:border-white/25"}`}
             aria-pressed={view === b.id}
           >
             <div className="relative h-32 sm:h-40 md:h-44 w-full">
@@ -111,10 +122,10 @@ export default function AboutSection() {
               />
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition" />
             </div>
-            <div className="p-3 sm:p-4">
+            <div className="p-3 sm:p-4 bg-black">
               <h3 className="text-lg sm:text-xl font-semibold">{b.title}</h3>
               <p className="mt-1 text-xs sm:text-sm text-gray-400">
-                {b.id === "team" ? "Who we are and how we work" : "What drives our studio forward"}
+                {b.id === "team" ? "Team of Vyaan Records" : "Music Producer/Composer/Audio Engineer"}
               </p>
             </div>
           </button>

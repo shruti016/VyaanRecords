@@ -14,7 +14,7 @@ function WorkCard({ title, href, poster }) {
       rel={href && href.startsWith("http") ? "noopener noreferrer" : undefined}
       className="group block"
     >
-      <div className="relative w-full max-w-[200px] mx-auto aspect-[3/4] overflow-hidden rounded-xl ring-1 ring-white/10 bg-[#1a1a1a]">
+      <div className="relative w-full max-w-[170px] mx-auto aspect-[3/4] overflow-hidden rounded-xl ring-1 ring-white/10 bg-[#1a1a1a]">
         {poster ? (
           <Image
             src={poster}
@@ -36,7 +36,7 @@ function WorkCard({ title, href, poster }) {
         <div className="pointer-events-none absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
 
         {/* title strip */}
-        <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-[2px] px-3 py-2">
+        <div className="absolute bottom-0 left-0 right-0 bg-black px-3 py-2">
           <p className="text-xs md:text-sm text-white line-clamp-1">{title}</p>
         </div>
       </div>
@@ -48,62 +48,85 @@ export default function WorkPage() {
   // Add/replace items anytime. If poster is omitted, safe placeholder shows.
   const WORK_ITEMS = [
     {
-      title: "Larzish — Single (YouTube)",
-      href: "https://youtube.com/",         // replace with real link
-      poster: "",                           // e.g. "/images/work/larzish.jpg"
+      title: "Sutti",
+      // href: "https://youtube.com/",         // replace with real link
+      poster: "/images/work/Sutti poster.jpg",                           // e.g. "/images/work/larzish.jpg"
     },
     {
-      title: "Background Score — Short Film",
-      href: "https://youtube.com/",
-      poster: "",
+      title: "A Name",
+      // href: "https://youtube.com/",
+      poster: "/images/work/A Name poster.png",
     },
     {
-      title: "Jingle — Brand Campaign",
-      href: "https://youtube.com/",
-      poster: "",
+      title: "Reliance-General-Insurance Ad",
+      // href: "https://youtube.com/",
+      poster: "/images/work/Reliance-General-Insurance.jpg",
     },
     {
-      title: "Podcast Mix — S1E03",
-      href: "https://youtube.com/",
-      poster: "",
+      title: "Learner's License",
+      // href: "https://youtube.com/",
+      poster: "/images/work/Learners License poster.jpg",
     },
     {
-      title: "Sound Design — Trailer",
-      href: "https://youtube.com/",
-      poster: "",
+      title: "Larzish",
+      // href: "https://youtube.com/",
+      poster: "/images/work/Larzish poster.jpg",
     },
     {
-      title: "Mastering — Live Session",
-      href: "https://youtube.com/",
-      poster: "",
+      title: "Kabaddi",
+      // href: "https://youtube.com/",
+      poster: "/images/work/Kabaddi poster.png",
     },
     {
-      title: "Live Concert Mix",
-      href: "https://youtube.com/",
-      poster: "",
+      title: "Adani Electricity",
+      // href: "https://youtube.com/",
+      poster: "/images/work/Adani Electricity poster.jpg",
     },
     {
-      title: "Behind The Scenes Edit",
-      href: "https://youtube.com/",
-      poster: "",
+      title: "Bekhabar Kashi Tu",
+      // href: "https://youtube.com/",
+      poster: "/images/work/Bekhabar Kashi Tu poster.jpg",
     },
     {
-      title: "Collaborations",
-      href: "https://youtube.com/",
-      poster: "",
+      title: "Kuch Bhi",
+      // href: "https://youtube.com/",
+      poster: "/images/work/Kuch Bhi poster.jpg",
     },
     {
-      title: "Demo Projects",
-      href: "https://youtube.com/",
-      poster: "",
+      title: "Saucony",
+      // href: "https://youtube.com/",   
+      poster: "/images/work/Saucony poster.jpg",
+    },
+    {
+      title: "Aamhi Bharatache Loka",
+      // href: "https://youtube.com/",   
+      poster: "/images/work/Aamhi Bharatache Loka poster.jpg",
+    },
+    {
+      title: "I think I'll go now",
+      // href: "https://youtube.com/",   
+      poster: "/images/work/I think I'll go now poster.jpg",
+    },
+    {
+      title: "Mazya Navaryachi Bayko",
+      // href: "https://youtube.com/",   
+      poster: "/images/work/Mazya Navaryachi Bayko poster.jpg",
+    },
+    {
+      title: "Laapata Khuda",
+      // href: "https://youtube.com/",   
+      poster: "/images/work/Laapata Khuda poster.jpg",
+    },
+    {
+      title: "BUB IT",
+      // href: "https://youtube.com/",   
+      poster: "/images/work/Bub It Boba poster.jpg",
     },
   ];
 
   return (
-    <main 
-      className="bg-[#000000] min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/bg logo 1.jpg')" }}
-    >
+    <main className="min-h-screen flex flex-col">
+       <div className="flex-grow">
       <div className="mx-auto max-w-[1536px] px-4 md:px-6 pt-8 pb-16 md:pb-20">
         <header className="mb-10 md:mb-14">
           <h1 className="text-5xl md:text-6xl font-extrabold text-center mt-4">
@@ -122,6 +145,7 @@ export default function WorkPage() {
             />
           ))}
         </div>
+      </div>
       </div>
       <Footer />
     </main>

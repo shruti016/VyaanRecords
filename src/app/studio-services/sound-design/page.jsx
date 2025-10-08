@@ -9,9 +9,9 @@ const SOUND_DESIGN_SECTIONS = [
     id: "advertisements",
     title: "Advertisements",
     items: [
-      { title: "15s TVC – Punchy FX", img: "/images/sound design/Sound Ads 1.jpg", href: "#" },
-      { title: "Beauty Ad – Glossy Sweeteners", img: "/images/sound design/Sound Ads 2.jpg", href: "#" },
-      { title: "Sports Promo – Hits & Whooshes", img: "/images/sound design/Sound Ads 3.jpg", href: "#" },
+      { title: "Special Sound Effects", img: "/images/sound design/Sound Ads 1.jpg", href: "#" },
+      { title: "Brand Tunes", img: "/images/sound design/Sound Ads 2.jpg", href: "#" },
+      { title: "Foley/SFX", img: "/images/sound design/Sound Ads 3.jpg", href: "#" },
       { title: "Retail Spot – Logo Stinger", img: "", href: "#" },
     ],
   },
@@ -20,8 +20,8 @@ const SOUND_DESIGN_SECTIONS = [
     title: "Podcasts/Videos",
     items: [
       { title: "Intro/Outro Idents", img: "/images/sound design/Sound podcast 2.jpeg", href: "#" },
-      { title: "Chapter Markers – Stems", img: "/images/sound design/Sound podcast 4.jpg", href: "#" },
-      { title: "SFX Beds – Narrative Show", img: "/images/sound design/Sound podcast 5.jpg", href: "#" },
+      { title: "Chapter Markers", img: "/images/sound design/Sound podcast 4.jpg", href: "#" },
+      { title: "SFX", img: "/images/sound design/Sound podcast 5.jpg", href: "#" },
       { title: "Ad Read Sweeteners", img: "", href: "#" },
     ],
   },
@@ -29,9 +29,9 @@ const SOUND_DESIGN_SECTIONS = [
     id: "films-series-otts",
     title: "Films/Series/OTTs",
     items: [
-      { title: "Dialog Polish – Clean & Warm", img: "/images/sound design/Sound Film 1.jpg", href: "#" },
-      { title: "Atmos Beds – City/Nature", img: "/images/sound design/Sound film 2.jpg", href: "#" },
-      { title: "Tension FX – Risers/Drops", img: "/images/sound design/Sound film 3.jpg", href: "#" },
+      { title: "Foley/Ambient Sound", img: "/images/sound design/Sound Film 1.jpg", href: "#" },
+      { title: "SFX", img: "/images/sound design/Sound film 2.jpg", href: "#" },
+      { title: "Dialogue Editing/Soundscapes", img: "/images/sound design/Sound film 3.jpg", href: "#" },
       { title: "Credits Hit – Impact Tail", img: "", href: "#" },
     ],
   },
@@ -56,7 +56,7 @@ function ShowcaseCard({ item }) {
             </div>
           )}
         </div>
-        <div className="p-4">
+        <div className="p-4 bg-black">
           <h4 className="text-sm font-medium text-white/90 leading-snug">
             {item.title}
           </h4>

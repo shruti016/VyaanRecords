@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
+import Footer from "../components/Footer"; // adjust to "../../components/Footer" if this file is nested deeper
+
 
 
 /* Minimal inline icons (stroke/currentColor) */
@@ -125,11 +127,16 @@ export default function ContactPage() {
     }
 
     const templateParams = {
-      from_email: f.email.value,
-      phone: f.phone.value ? `${selectedCountryCode} ${f.phone.value}` : '',
-      subject: f.subject.value,
-      message: f.message.value,
-    };
+  // send the client email under all the names your template might use
+  from_email: f.email.value,          // your template uses {{from_email}}
+  email: f.email.value,               // your top sentence uses {{email}}
+  reply_to: f.email.value,            // ensures Reply-To goes to client
+
+  phone: f.phone.value ? `${selectedCountryCode} ${f.phone.value}` : "",
+  subject: f.subject.value,
+  message: f.message.value,
+};
+
 
     try {
       await emailjs.send(serviceId, templateId, templateParams, { publicKey });
@@ -147,9 +154,9 @@ export default function ContactPage() {
   
   return (
     // Responsive layout optimized for mobile and desktop
-    <main className="min-h-screen bg-black text-white">
+    <main className="contact-bg min-h-screen text-white">
       {/* Minimal spacing for better mobile experience */}
-      <section className="pt-12 sm:pt-16 pb-8 sm:pb-12 lg:pb-16">
+      <section className="pt-0 sm:pt-1 pb- 8 sm:pb-12 lg:pb-16">
         {/* Responsive container */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 xl:gap-16 items-start lg:items-center lg:min-h-[calc(100vh-100px)]">
@@ -168,7 +175,7 @@ export default function ContactPage() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 lg:space-y-5">
                   <div>
-                    <label htmlFor="email" className="block text-sm sm:text-base mb-2 font-medium">Your email</label>
+                    <label htmlFor="email" className="block text-sm sm:text-base mb-2 font-medium">Your Email</label>
                     <input
                       id="email"
                       name="email"
@@ -181,7 +188,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm sm:text-base mb-2 font-medium">Phone Number (Optional)</label>
+                    <label htmlFor="phone" className="block text-sm sm:text-base mb-2 font-medium">Phone Number</label>
                     <div className="flex gap-2">
                       <select
                         value={selectedCountryCode}
@@ -306,7 +313,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      
+      <Footer />
     </main>
   );
 }
