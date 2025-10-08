@@ -1,7 +1,8 @@
 // src/app/utils/searchIndex.js
 export const SEARCH_INDEX = [
     // Top-level pages
-    { path: "/", hash: "#work", aliases: ["work", "our work", "portfolio", "projects"] },
+    // { path: "/", hash: "#work", aliases: ["work", "our work", "portfolio", "projects"] },
+    { path: "/work", aliases: ["work", "our work", "portfolio", "projects"] },
     { path: "/contact", aliases: ["contact", "contact us", "email", "message"] },
     { path: "/gallery", aliases: ["gallery", "photos", "images", "studio pics"] },
     { path: "/equipment", aliases: ["equipment", "equipments", "gear"] },

@@ -11,36 +11,36 @@ const MASTERING_SECTIONS = [
     id: "songs",
     title: "Songs",
     items: [
-      { title: "Single – Radio Master", img: "/images/mastering/Song mixing 1.jpg", href: "#" },
-      { title: "Album Track – Cohesive Tone", img: "/images/mastering/Song mixing 2.jpg", href: "#" },
-      { title: "Streaming Optimized – LUFS Target", img: "/images/mastering/Song mixing 3.jpg", href: "#" },
+      { title: "Indie", img: "/images/mastering/Song mixing 1.jpg", href: "#" },
+      { title: "Commercial/Labels", img: "/images/mastering/Song mixing 2.jpg", href: "#" },
+      { title: "Films/Series", img: "/images/mastering/Song mixing 3.jpg", href: "#" },
     ],
   },
   {
     id: "podcasts",
     title: "Podcasts/Videos",
     items: [
-      { title: "Dialogue Clarity – Loudness Norm", img: "/images/mastering/podcast 9.jpg", href: "#" },
-      { title: "Intro/Outro Glue", img: "/images/mastering/podcast 5.jpg", href: "#" },
-      { title: "Ad Segment Level Match", img: "/images/mastering/podcast 7.jpg", href: "#" },
+      { title: "Interview Podcasts", img: "/images/mastering/podcast 9.jpg", href: "#" },
+      { title: "Storytelling/Narrative Podcasts", img: "/images/mastering/podcast 5.jpg", href: "#" },
+      { title: "Discussion/Talk Shows", img: "/images/mastering/podcast 7.jpg", href: "#" },
     ],
   },
   {
     id: "advertisements",
     title: "Advertisements",
     items: [
-      { title: "15s/30s – Punch & Presence", img: "/images/mastering/Ads mastering 1.jpg", href: "#" },
-      { title: "Brand Mnemonic – Impact", img: "/images/mastering/Ads mastering 2.jpg", href: "#" },
-      { title: "Broadcast Specs – True Peak", img: "/images/mastering/Ads mastering 3.jpg", href: "#" },
+      { title: "Jingles", img: "/images/mastering/Ads mastering 1.jpg", href: "#" },
+      { title: "Brand Tunes", img: "/images/mastering/Ads mastering 2.jpg", href: "#" },
+      { title: "Voice/Music", img: "/images/mastering/Ads mastering 3.jpg", href: "#" },
     ],
   },
   {
     id: "films-series-otts",
     title: "Films/Series/OTTs",
     items: [
-      { title: "Stereo Printmaster", img: "/images/mastering/Film mastering 1.jpg", href: "#" },
-      { title: "M&E Conform – Delivery", img: "/images/mastering/Film mastering 2.jpg", href: "#" },
-      { title: "Trailer Loudness – Spec", img: "/images/mastering/Film mastering 3.jpg", href: "#" },
+      { title: "Background Score", img: "/images/mastering/Film mastering 1.jpg", href: "#" },
+      { title: "Songs/Dialogues", img: "/images/mastering/Film mastering 2.jpg", href: "#" },
+      { title: "Soundscapes", img: "/images/mastering/Film mastering 3.jpg", href: "#" },
     ],
   },
 ];
@@ -65,7 +65,7 @@ function ShowcaseCard({ item }) {
             </div>
           )}
         </div>
-        <div className="p-4">
+        <div className="p-4 bg-black">
           <h4 className="text-sm font-medium text-white/90 leading-snug">
             {item.title}
           </h4>

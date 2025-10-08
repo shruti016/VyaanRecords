@@ -7,10 +7,11 @@ import Footer from "../components/Footer";
 /* ---------- DATA ---------- */
 const STUDIO_IMAGES = [
   "/images/gallery/studio-1.jpg",
-  "/images/gallery/studio-2.jpg",
-  "/images/gallery/studio-3.jpg",
   "/images/gallery/studio-4.jpg",
-  "/images/gallery/studio-5.jpg",
+  "/images/gallery/studio-8.jpg",
+  "/images/gallery/studio-7.jpg",
+  "/images/gallery/studio-3.jpg",
+  "/images/gallery/studio-9.jpg",
 ];
 
 // Add BTS images later in the same order as studio images.

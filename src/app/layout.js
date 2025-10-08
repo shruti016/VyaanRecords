@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Vyaan Records",
-  description: "Music Producer",
+  description: "Music Production Studio",
 };
 
 export default function RootLayout({ children }) {
@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <link
           rel="preload"
           as="video"
-          href="/videos/vyaan-trailer.mp4"
+          href="/videos/Final Trailer.mp4"
           type="video/mp4"
         />
       </head>

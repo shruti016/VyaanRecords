@@ -42,9 +42,9 @@ const RECORDING_SECTIONS = [
     id: "guitar-recording",
     title: "Guitar Recordings",
     items: [
-      { title: "Acoustic Session – Studio A", img: "/images/recording/guitar-2.png"},
-      { title: "Electric Lead – Fusion Track", img: "/images/recording/guitar 1.jpg"},
-      { title: "Fingerstyle – Indie Song", img: "/images/recording/guitar 4.jpg"},
+      { title: "Acoustic", img: "/images/recording/guitar-2.png"},
+      { title: "Electric", img: "/images/recording/guitar 1.jpg"},
+      { title: "Base", img: "/images/recording/guitar 4.jpg"},
       { title: "12-String Texture", img: "", href: "#" },
     ],
   },
@@ -52,9 +52,9 @@ const RECORDING_SECTIONS = [
     id: "vocal-recording",
     title: "Vocal Recordings",
     items: [
-      { title: "Pop Lead – Maaya", img: "/images/recording/vocal 2.jpg"},
-      { title: "Harmonies – Larzish", img: "/images/recording/vocal 1.jpg" },
-      { title: "Voice Comp & Tuning", img: "/images/recording/vocal 3.jpg" },
+      { title: "Male/Female Vocals", img: "/images/recording/vocal 2.jpg"},
+      { title: "Main Vocals/Double Trackings", img: "/images/recording/vocal 1.jpg" },
+      { title: "Specific Genre/Background Vocals", img: "/images/recording/vocal 3.jpg" },
       { title: "Choir Layering", img: "", href: "#" },
     ],
   },
@@ -62,9 +62,9 @@ const RECORDING_SECTIONS = [
     id: "dubbing-voice-overs",
     title: "Dubbing & Voice-Overs",
     items: [
-      { title: "Commercial VO – Brand A", img: "/images/recording/dub 1.jpg", href: "#" },
-      { title: "Audiobook – Chapter Sample", img: "/images/recording/dub 2.jpg", href: "#" },
-      { title: "ADR – Short Film", img: "/images/recording/dub 3.jpg", href: "#" },
+      { title: "Advertisements/Commercials", img: "/images/recording/dub 1.jpg", href: "#" },
+      { title: "Films/Series/OTTs", img: "/images/recording/dub 2.jpg", href: "#" },
+      { title: "Corporate/Audiobooks", img: "/images/recording/dub 3.jpg", href: "#" },
       { title: "Multilingual VO", img: "", href: "#" },
     ],
   },
@@ -72,9 +72,9 @@ const RECORDING_SECTIONS = [
     id: "podcast-recording",
     title: "Podcast Recordings",
     items: [
-      { title: "Two-Host Setup", img: "/images/recording/podcast 3.jpg"},
-      { title: "Remote Guest via Cleanfeed", img: "/images/recording/podcast 2.jpeg", href: "#" },
-      { title: "Roundtable – 4 Mics", img: "/images/recording/podcast 4.jpg", href: "#" },
+      { title: "Interview Podcasts", img: "/images/recording/podcast 3.jpg"},
+      { title: "Storytelling/Narrative Podcasts", img: "/images/recording/podcast 2.jpeg", href: "#" },
+      { title: "Discussion/Talk Shows", img: "/images/recording/podcast 4.jpg", href: "#" },
       { title: "Narrative Series", img: "", href: "#" },
     ],
   },
@@ -82,9 +82,9 @@ const RECORDING_SECTIONS = [
     id: "location-sound-recording",
     title: "Location Sound Recordings",
     items: [
-      { title: "On-Set Dialog – Short Film", img: "/images/recording/location 1.jpg", href: "#" },
-      { title: "Foley / Wild Tracks", img: "/images/recording/location 2.jpg", href: "#" },
-      { title: "Ambience – City & Nature", img: "/images/recording/location 5.jpg", href: "#" },
+      { title: "Foley", img: "/images/recording/location 1.jpg", href: "#" },
+      { title: "Ambience", img: "/images/recording/location 2.jpg", href: "#" },
+      { title: "Sync Sound/Dialogues", img: "/images/recording/location 5.jpg", href: "#" },
       { title: "SFX Field Capture", img: "", href: "#" },
     ],
   },
@@ -110,7 +110,7 @@ function ShowcaseCard({ item }) {
             </div>
           )}
         </div>
-        <div className="p-4">
+        <div className="p-4 bg-black">
           <h4 className="text-sm font-medium text-white/90 leading-snug">
             {item.title}
           </h4>

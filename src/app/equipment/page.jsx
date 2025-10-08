@@ -7,7 +7,9 @@ const EquipCard = ({ name, folder, file, scale = 1, solidBg = false }) => (
   <div className="group max-w-[180px]"> 
     <div className={`aspect-square w-full overflow-hidden rounded-xl ring-1 ring-white/10 flex items-center justify-center ${solidBg ? "bg-white" : "bg-[#1a1a1a]"}`}>
       <Image
-        src={`/images/gallery/${folder}/${file}`}   // ✅ dynamic folder/file
+         src={file?.startsWith("/")
+          ? file
+          : `/images/gallery/${encodeURIComponent(folder)}/${encodeURIComponent(file)}`}
         alt={name}
         width={800}
         height={800}
@@ -41,7 +43,7 @@ const Section = ({ id, title, folder, items }) => (
 export default function EquipmentPage() {
   // === DATA: edit only filenames later ===
   const DAWS = [
-    { name: "Apple Logic Pro X", file: "Apple Logic Pro X.png", solidBg: true, scale: 1.22 },
+    { name: "Apple Logic Pro X", file: "Apple Logic Pro X.png", solidBg: true, scale: 1.90 },
     { name: "Avid Pro Tools", file: "Avid Pro Tools.png",   solidBg: true, scale: 1.18 },
   ];
 
@@ -56,7 +58,7 @@ export default function EquipmentPage() {
   
 
   const INTERFACES = [
-    { name: "Universal Audio Apollo X8", file: "universal-audio-vector.png", solidBg: true, scale: 1.20 },
+    { name: "Universal Audio Apollo X8", file: "universal-audio-apollo-x8.jpg", solidBg: false, scale: 1.58 },
   ];
 
   const MONITORS = [
@@ -82,7 +84,7 @@ export default function EquipmentPage() {
   ];
 
   return (
-    <main className="bg-[#000000] min-h-screen">
+    <main className="min-h-screen">
       <div className="mx-auto max-w-[1536px] px-4 md:px-6 pt-8 pb-16 md:pb-20">
         <header className="mb-10 md:mb-14">
           <h1 className="text-5xl md:text-6xl font-extrabold text-center mt-4">

@@ -10,9 +10,9 @@ const MUSIC_PROD_SECTIONS = [
     id: "original-songs",
     title: "Original Songs",
     items: [
-      { title: "Indie Pop – Demo A", img: "/images/music production/Original 1.jpg", href: "#" },
-      { title: "Soul Ballad – Demo B", img: "/images/music production/Original 3.jpg", href: "#" },
-      { title: "Alt Rock – Demo C", img: "/images/music production/Original 5.jpg", href: "#" },
+      { title: "Indie", img: "/images/music production/Original 1.jpg", href: "#" },
+      { title: "Commercial/Labels", img: "/images/music production/Original 3.jpg", href: "#" },
+      { title: "Films/Series", img: "/images/music production/Original 5.jpg", href: "#" },
       { title: "Hindi Pop – Demo D", img: "", href: "#" },
     ],
   },
@@ -20,9 +20,9 @@ const MUSIC_PROD_SECTIONS = [
     id: "jingles-advertisments",
     title: "Jingles/Advertisments",
     items: [
-      { title: "Retail Brand – 10s Jingle", img: "/images/music production/Jingle 1.jpg", href: "#" },
-      { title: "App Launch – 15s Tune", img: "/images/music production/Jingle 3.jpg", href: "#" },
-      { title: "Brand Mnemonic – 4 Notes", img: "/images/music production/Jingle 2.jpg", href: "#" },
+      { title: "Advertisments", img: "/images/music production/Jingle 1.jpg", href: "#" },
+      { title: "Brand Tunes", img: "/images/music production/Jingle 3.jpg", href: "#" },
+      { title: "Corporate", img: "/images/music production/Jingle 2.jpg", href: "#" },
       { title: "Festival Promo – 12s", img: "", href: "#" },
     ],
   },
@@ -30,9 +30,9 @@ const MUSIC_PROD_SECTIONS = [
     id: "short-films-videos",
     title: "Short Films/Videos",
     items: [
-      { title: "Drama Score – Theme", img: "/images/music production/Short Film 1.jpg", href: "#" },
-      { title: "Thriller Motif – Pulse", img: "/images/music production/Short Film 2.jpg", href: "#" },
-      { title: "Family Montage – Warmth", img: "/images/music production/Short Film 3.jpg", href: "#" },
+      { title: "Vertical Films", img: "/images/music production/Short Film 1.jpg", href: "#" },
+      { title: "Short Films", img: "/images/music production/Short Film 2.jpg", href: "#" },
+      { title: "YouTube/Documentary Videos", img: "/images/music production/Short Film 3.jpg", href: "#" },
       { title: "Credits Cue – Outro", img: "", href: "#" },
     ],
   },
@@ -40,9 +40,9 @@ const MUSIC_PROD_SECTIONS = [
     id: "feature-films-series-otts",
     title: "Feature Films/Series/OTTs",
     items: [
-      { title: "Main Theme – Orchestral", img: "/images/music production/Feature film 1.jpg", href: "#" },
-      { title: "Action Cue – Hybrid", img: "/images/music production/Feature film 3.jpg", href: "#" },
-      { title: "Emotional Cue – Strings", img: "/images/music production/Feature film 2.jpg", href: "#" },
+      { title: "Film Background Score", img: "/images/music production/Feature film 1.jpg", href: "#" },
+      { title: "Series Backgeound Score", img: "/images/music production/Feature film 3.jpg", href: "#" },
+      { title: "OTTs Background Score", img: "/images/music production/Feature film 2.jpg", href: "#" },
       { title: "End Credits – Suite", img: "", href: "#" },
     ],
   },
@@ -68,7 +68,7 @@ function ShowcaseCard({ item }) {
             </div>
           )}
         </div>
-        <div className="p-4">
+        <div className="p-4 bg-black">
           <h4 className="text-sm font-medium text-white/90 leading-snug">
             {item.title}
           </h4>

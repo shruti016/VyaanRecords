@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
 import { SEARCH_INDEX } from "../utils/searchIndex";
 
+
 export default function SearchPage({ searchParams }) {
   const qRaw = (searchParams?.q || "").toString().trim();
   const q = qRaw.toLowerCase();
-
+  
   // if no query, keep your existing minimal UI
   if (!q) {
     return (
